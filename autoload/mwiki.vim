@@ -20,7 +20,11 @@ function! mwiki#ActionLink()
     let g:cursorStr = expand("<cWORD>")
     if mwiki#IsLink(g:cursorStr) == 1
         let path = mwiki#GetLinkLocation(g:cursorStr)
-        call mwiki#EnterLink(path)
+        if match(path,'md$') != -1
+            call mwiki#EnterLink(path)
+        else
+            echo "this link not end with .md"
+        endif
     else
         let link = mwiki#CreateLink(g:cursorStr)
         call mwiki#ReplaceCursorStr(link)
