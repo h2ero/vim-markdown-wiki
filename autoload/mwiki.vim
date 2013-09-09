@@ -12,6 +12,10 @@ if exists("g:loaded_mwiki") || &cp
     finish
 endif
 
+function! mwiki#init()
+    call mwiki#hightlight#init()
+endfunction
+
 function! mwiki#ActionLink()
     let g:cursorStr = expand("<cWORD>")
     if mwiki#IsLink(g:cursorStr) == 1
