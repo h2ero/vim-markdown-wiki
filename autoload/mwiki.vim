@@ -13,10 +13,10 @@ if exists("g:loaded_mwiki") || &cp
 endif
 
 function! mwiki#ActionLink()
-    let g:cursorStr = expand("<cWORD>>")
+    let g:cursorStr = expand("<cWORD>")
     if mwiki#IsLink(g:cursorStr) == 1
-        call mwiki#GetLinkLocation(g:cursorStr)
-        " call mwiki#EnterLink(file)
+        let path = mwiki#GetLinkLocation(g:cursorStr)
+        call mwiki#EnterLink(path)
     else
         let link = mwiki#CreateLink(g:cursorStr)
         call mwiki#ReplaceCursorStr(link)
@@ -36,29 +36,27 @@ function! mwiki#CreateLink(word)
     let linkName = a:word
     if match(a:word,'/') != -1
         let linkName = matchlist(a:word, '/\([^/]*\)$')[1]
+        let path = substitute(a:word,'/[^/]\+$', "", "s")
+        call mwiki#CreateDir(path)
     endif
     let link = "[".linkName."](".a:word.".md)"
     return link
 endfunction
 
 " jump link locate file
-function! mwiki#EnterLink(filePath)
+function! mwiki#EnterLink(path)
+    execute "edit ".a:path
 endfunction
 
 function! mwiki#GetLinkLocation(link)
-    execute "edit ".matchlist(a:link, '(\(.*\))')[1]
+    return matchlist(a:link, '(\(.*\))')[1]
 endfunction
 
 function! mwiki#ReplaceCursorStr(replaceString)
-    let lineContent = getline(getpos(".")[1])
-    "get space 
-    let spacePos = 0
-    for i in range(col(".")-1, 0, -1)
-        if lineContent[i] == " "
-            let spacePos = i
-            break
-        endif
-    endfor
-    let lineContent = substitute(lineContent, '\(.\{'.spacePos.'\}\)'.g:cursorStr, '\1'.a:replaceString, 's')
-    call setline(getpos(".")[1], lineContent)
+    let replaceString = escape(a:replaceString,']\/*')
+    exec 's/\S*\%#\S*/'.replaceString
+endfunction
+
+function! mwiki#CreateDir(path)
+    call mkdir(a:path, "p", 0755)
 endfunction
