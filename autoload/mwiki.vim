@@ -52,15 +52,23 @@ function! mwiki#EnterLink(path)
     execute "edit ".a:path
 endfunction
 
+" get link location
 function! mwiki#GetLinkLocation(link)
     return matchlist(a:link, '(\(.*\))')[1]
 endfunction
 
+" repace cursor string
 function! mwiki#ReplaceCursorStr(replaceString)
     let replaceString = escape(a:replaceString,']\/*')
     exec 's/\S*\%#\S*/'.replaceString
 endfunction
 
+" create dir
 function! mwiki#CreateDir(path)
     call mkdir(a:path, "p", 0755)
+endfunction
+
+"
+function! mwiki#GoToNext(flag)
+    call search('\[[^\[^\]]*\]', 'ws'.a:flag)
 endfunction
