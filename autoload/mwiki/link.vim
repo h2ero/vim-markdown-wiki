@@ -3,7 +3,7 @@
 "
 " Last Change: 2013-09-10 10:50:44
 
-function! mwiki#link#ActionLink()
+function! mwiki#link#Action()
     let g:cursorStr = expand("<cWORD>")
     if mwiki#link#Is(g:cursorStr) == 1
         let path = mwiki#link#GetLocation(g:cursorStr)
