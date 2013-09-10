@@ -1,5 +1,10 @@
+"
+" highlight function 
+"
+" Last Change: 2013-09-10 10:46:11
+
 " from http://vim.wikia.com/wiki/Different_syntax_highlighting_within_regions_of_a_file
-function! mwiki#hightlight#TextEnableCodeSnip(filetype,start,end, textSnipHl) abort
+function! mwiki#highlight#TextEnableCodeSnip(filetype,start,end, textSnipHl) abort
   let ft=toupper(a:filetype)
   let group='textGroup'.ft
   if exists('b:current_syntax')
@@ -24,9 +29,9 @@ function! mwiki#hightlight#TextEnableCodeSnip(filetype,start,end, textSnipHl) ab
   \ contains=@'.group
 endfunction
 
-function! mwiki#hightlight#init()
+function! mwiki#highlight#init()
     let syntaxs = {'c':'c','php':'php','python':'python','sql':'sql','html':'html','sh':'sh','js':'javascript','text':'sh','conf':'conf'}
     for key in keys(syntaxs)
-        call mwiki#hightlight#TextEnableCodeSnip(syntaxs[key], '```'.key, '```', key)
+        call mwiki#highlight#TextEnableCodeSnip(syntaxs[key], '```'.key, '```', key)
     endfor
 endfunction
