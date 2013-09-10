@@ -30,8 +30,8 @@ function! mwiki#highlight#TextEnableCodeSnip(filetype,start,end, textSnipHl) abo
 endfunction
 
 function! mwiki#highlight#init()
-    let syntaxs = {'c':'c','php':'php','python':'python','sql':'sql','html':'html','sh':'sh','js':'javascript','text':'sh','conf':'conf'}
+    let syntaxs = {'c':'c','php':'php','python':'python','sql':'sql','css':'css','html':'html','sh':'sh','js':'javascript','text':'sh','conf':'conf'}
     for key in keys(syntaxs)
-        call mwiki#highlight#TextEnableCodeSnip(syntaxs[key], '```'.key, '```', key)
+        call mwiki#highlight#TextEnableCodeSnip(syntaxs[key], '``` '.key, '```', key)
     endfor
 endfunction
