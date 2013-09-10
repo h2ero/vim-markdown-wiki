@@ -23,7 +23,7 @@ function! mwiki#table#Is(str)
 endfunction
 
 
-function! mwiki#table#CreateTable(row, col)
+function! mwiki#table#Create(row, col)
     let row = a:row - 1 
     let col = a:col - 2
     let table = ["|    |    |",
@@ -37,7 +37,7 @@ function! mwiki#table#CreateTable(row, col)
     endif
 
     if col > 0 
-        for i in range(1,len(table)-1,1)
+        for i in range(0,len(table)-1,1)
             if i != 1
                 let table[i] = table[i].repeat("    |", col)
             else
@@ -53,6 +53,14 @@ function! mwiki#table#CreateRow()
 endfunction
 
 function! mwiki#table#CreateRowHr()
+endfunction
+
+function! mwiki#table#CheckFormat()
+        if mwiki#table#Is("") 
+            call mwiki#table#Format()
+        else
+            normal! "<Esc>"
+        endif
 endfunction
 
 function! mwiki#table#Format()
@@ -90,7 +98,7 @@ function! mwiki#table#Format()
     for i in range(0, len(table)-1, 1)
         for ii in range(0,len(table[i])-1, 1)
             let table[i][ii] = substitute(table[i][ii], '^\s\+\(\S*\)\s\+$', '\1', 'g')
-            if len(table[i][ii]) > colLen[ii]
+            if len(table[i][ii]) > colLen[ii] && i != 1
                 let colLen[ii] = len(table[i][ii])
             endif
         endfor
@@ -103,7 +111,7 @@ function! mwiki#table#Format()
             let rightWidth = float2nr(round(halfWidth))
             let leftWidth = float2nr(floor(halfWidth))
             if i == 1
-                let table[i][ii] = " ".repeat("-", leftWidth).table[i][ii].repeat("-", rightWidth)." "
+                let table[i][ii] = " ".repeat("-",colLen[ii])." "
             else
                 let table[i][ii] = repeat(" ", leftWidth+1).table[i][ii].repeat(" ", rightWidth+1)
             endif
