@@ -54,3 +54,66 @@ endfunction
 
 function! mwiki#table#CreateRowHr()
 endfunction
+
+function! mwiki#table#Format()
+
+    " Step 1. get table line range
+    " Step 2. read table cell in to tow dimensional array
+    " Step 3. calculate cell max with and fill other cell which with less than max width
+    
+    let nowLine = getpos(".")[1]
+    let endLine = nowLine
+    let firstLine = nowLine
+
+    while match(getline(nowLine), '^|.*|$')  != -1
+        let firstLine = nowLine
+        let nowLine  = nowLine - 1
+    endwhile
+
+    let nowLine = endLine
+    while match(getline(nowLine), '^|.*|$')  != -1
+        let endLine = nowLine
+        let nowLine  = nowLine + 1
+    endwhile
+
+    let table = []
+    for lineNum in range(firstLine, endLine, 1)
+        let table = add(table, split(getline(lineNum), "|"))
+    endfor
+
+    let colLen = []
+    for i in range(0,len(table[0])-1)
+        call add(colLen, 0)
+    endfor
+
+    " fliter begin and end space  of cell
+    for i in range(0, len(table)-1, 1)
+        for ii in range(0,len(table[i])-1, 1)
+            let table[i][ii] = substitute(table[i][ii], '^\s\+\(\S*\)\s\+$', '\1', 'g')
+            if len(table[i][ii]) > colLen[ii]
+                let colLen[ii] = len(table[i][ii])
+            endif
+        endfor
+    endfor
+
+    " add space in cell
+    for i in range(0, len(table)-1, 1)
+        for ii in range(0,len(table[i])-1, 1)
+            let halfWidth =  (colLen[ii]-len(table[i][ii])) / 2.0
+            let rightWidth = float2nr(round(halfWidth))
+            let leftWidth = float2nr(floor(halfWidth))
+            if i == 1
+                let table[i][ii] = " ".repeat("-", leftWidth).table[i][ii].repeat("-", rightWidth)." "
+            else
+                let table[i][ii] = repeat(" ", leftWidth+1).table[i][ii].repeat(" ", rightWidth+1)
+            endif
+        endfor
+        let table[i] = join(table[i],"|")
+    endfor
+
+    for i in range(0, len(table)-1)
+        let table[i] = "|".table[i]."|"
+    endfor
+
+    call setline(firstLine, table)
+endfunction
