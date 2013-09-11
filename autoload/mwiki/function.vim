@@ -1,4 +1,4 @@
-"
+
 " function 
 "
 " Author: h2ero <122750707@qq.com>
@@ -10,4 +10,22 @@ function! mwiki#function#trim(str)
         return ""
     endif
     return substitute(a:str, '^\s*\<\(.*\)\>\s*$', '\1', 'g')
+endfunction
+
+"get string by regex and cursor, notice: this string contains space.
+function! mwiki#function#GetCursorString(isContainSpace)
+    if a:isContainSpace == "false"
+        return expand("<cWORD>")
+    endif
+    "Step 1. check regex match string contains cursor string 
+    "Step 2. get string  form regex match or cursor
+    let cursorString = expand("<cword>")
+    let pattern = '.*'.cursorString.'.*'
+    let pattern = '\[\('.pattern.'\)]('.pattern.'\.md)'
+    " let pattern = '.*'
+    if match(getline("."), pattern) != -1
+        return matchstr(getline("."), pattern)
+    else
+        return expand("<cWORD>")
+    endif
 endfunction

@@ -4,7 +4,7 @@
 " Last Change: 2013-09-10 10:50:44
 
 function! mwiki#link#Action()
-    let g:cursorStr = expand("<cWORD>")
+    let g:cursorStr = mwiki#function#GetCursorString("true")
     if mwiki#link#Is(g:cursorStr) == 1
         let path = mwiki#link#GetLocation(g:cursorStr)
         if match(path,'md$') != -1
@@ -45,7 +45,7 @@ endfunction
 
 " jump link locate file
 function! mwiki#link#Enter(path)
-    execute "edit ".a:path
+    execute "edit ".escape(a:path, " ")
 endfunction
 
 " get link location
