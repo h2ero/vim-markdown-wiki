@@ -12,12 +12,13 @@ endfunction
 " repace cursor string
 function! mwiki#common#ReplaceCursorStr(replaceString)
     let replaceString = escape(a:replaceString,']\/*')
+    let g:nowPos = getpos(".")
     exec 's/\S*\%#\S*/'.replaceString
+    call setpos(".", g:nowPos)
 endfunction
 
 "
 function! mwiki#common#GoToNext(flag)
-    echo mwiki#table#Is("")
     " is it link
     if mwiki#link#Is("") == 1
         call search('\[[^\[^\]]*\]', 'ws'.a:flag)

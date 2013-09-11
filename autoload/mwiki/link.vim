@@ -8,7 +8,7 @@ function! mwiki#link#Action()
     if mwiki#link#Is(g:cursorStr) == 1
         let path = mwiki#link#GetLocation(g:cursorStr)
         if match(path,'md$') != -1
-            call mwiki#EnterLink(path)
+            call mwiki#link#Enter(path)
         else
             echo "this link not end with .md"
         endif
@@ -52,6 +52,3 @@ endfunction
 function! mwiki#link#GetLocation(link)
     return matchlist(a:link, '(\(.*\))')[1]
 endfunction
-
-
-

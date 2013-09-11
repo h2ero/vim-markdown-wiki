@@ -30,7 +30,6 @@ function! mwiki#table#Create(row, col)
                 \"| -- | -- |",
                 \"|    |    |"]
     if row > 0 
-        echo row
         for i in range(1,row,1)
             call   add(table, "|    |    |")
         endfor

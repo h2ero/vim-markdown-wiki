@@ -14,3 +14,11 @@ markdown wiki for vim
     2. jump to next list                        todo
 4. generate html(using golang )                 todo
 5. conceal  b,link etc mark                     todo
+
+
+## Usage
+1. .vimrc 
+    let g:mwikis = [{'path': '~/temp/mwiki/'}] 
+ 
+ 
+
