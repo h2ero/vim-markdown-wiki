@@ -97,7 +97,7 @@ function! mwiki#table#Format()
     " fliter begin and end space  of cell
     for i in range(0, len(table)-1, 1)
         for ii in range(0,len(table[i])-1, 1)
-            let table[i][ii] = substitute(table[i][ii], '^\s\+\(\S*\)\s\+$', '\1', 'g')
+            let table[i][ii] = mwiki#function#trim(table[i][ii])
             if len(table[i][ii]) > colLen[ii] && i != 1
                 let colLen[ii] = len(table[i][ii])
             endif
