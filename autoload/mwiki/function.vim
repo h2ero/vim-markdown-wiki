@@ -6,5 +6,8 @@
 
 "trim 
 function! mwiki#function#trim(str)
-    return substitute(a:str, '^\s\+\<\(.*\)\>\s\+$', '\1', 'g')
+    if match(a:str, '^\s*$') != -1
+        return ""
+    endif
+    return substitute(a:str, '^\s*\<\(.*\)\>\s*$', '\1', 'g')
 endfunction
