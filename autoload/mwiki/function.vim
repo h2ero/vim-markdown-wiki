@@ -9,7 +9,7 @@ function! mwiki#function#trim(str)
     if match(a:str, '^\s*$') != -1
         return ""
     endif
-    return substitute(a:str, '^\s*\<\(.*\)\>\s*$', '\1', 'g')
+    return substitute(a:str, '\(^\s*\|\s*$\)', '', 'g')
 endfunction
 
 "get string by regex and cursor, notice: this string contains space.
