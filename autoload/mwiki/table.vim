@@ -97,8 +97,8 @@ function! mwiki#table#Format()
     for i in range(0, len(table)-1, 1)
         for ii in range(0,len(table[i])-1, 1)
             let table[i][ii] = mwiki#function#trim(table[i][ii])
-            if len(table[i][ii]) > colLen[ii] && i != 1
-                let colLen[ii] = len(table[i][ii])
+            if strdisplaywidth(table[i][ii]) > colLen[ii] && i != 1
+                let colLen[ii] = strdisplaywidth(table[i][ii])
             endif
         endfor
     endfor
@@ -106,7 +106,7 @@ function! mwiki#table#Format()
     " add space in cell
     for i in range(0, len(table)-1, 1)
         for ii in range(0,len(table[i])-1, 1)
-            let halfWidth =  (colLen[ii]-len(table[i][ii])) / 2.0
+            let halfWidth =  (colLen[ii]-strdisplaywidth(table[i][ii])) / 2.0
             let rightWidth = float2nr(round(halfWidth))
             let leftWidth = float2nr(floor(halfWidth))
             if i == 1
