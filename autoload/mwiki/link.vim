@@ -45,10 +45,27 @@ endfunction
 
 " jump link locate file
 function! mwiki#link#Enter(path)
+
+    " when editing cursor  wiki is needed push now wiki into path
+    if ! exists("g:mwikiEnterLinkStack")
+        let g:mwikiEnterLinkStack = []
+    endif
+    let g:mwikiEnterLinkStack = add(g:mwikiEnterLinkStack, expand("%:p"))
+
     execute "edit ".escape(a:path, " ")
 endfunction
 
 " get link location
 function! mwiki#link#GetLocation(link)
     return matchlist(a:link, '(\(.*\))')[1]
+endfunction
+
+" 
+function! mwiki#link#GoToLast()
+    if exists("g:mwikiEnterLinkStack") && len(g:mwikiEnterLinkStack) != 0
+        execute "edit ".g:mwikiEnterLinkStack[len(g:mwikiEnterLinkStack)-1]
+        unlet g:mwikiEnterLinkStack[len(g:mwikiEnterLinkStack)-1]
+    else
+        echo "this is a last you enter item file."
+    endif
 endfunction

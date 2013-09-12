@@ -5,6 +5,8 @@ autocmd FileType markdown nmap <silent> <Tab> :call mwiki#common#GoToNext("")<CR
 autocmd FileType markdown nmap <silent> <S-Tab> :call mwiki#common#GoToNext("b")<CR>
 autocmd FileType markdown inoremap <silent> <Esc>  <Esc>:call mwiki#table#CheckFormat()<CR>
 
+autocmd FileType markdown nmap <silent> <BS> :call mwiki#link#GoToLast()<CR>
+
 command! -count=1 MwikiGoToIndex  call mwiki#manage#GoToIndex(v:count1)
 noremap <Leader>mw :MwikiGoToIndex<CR>
 
