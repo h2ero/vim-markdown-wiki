@@ -50,7 +50,7 @@ function! mwiki#link#Enter(path)
     if ! exists("g:mwikiEnterLinkStack")
         let g:mwikiEnterLinkStack = []
     endif
-    let g:mwikiEnterLinkStack = add(g:mwikiEnterLinkStack, expand("%:p"))
+    let g:mwikiEnterLinkStack = add(g:mwikiEnterLinkStack, expand("%:p")."@pos".join(getpos("."),","))
 
     execute "edit ".escape(a:path, " ")
 endfunction
@@ -63,7 +63,9 @@ endfunction
 " 
 function! mwiki#link#GoToLast()
     if exists("g:mwikiEnterLinkStack") && len(g:mwikiEnterLinkStack) != 0
-        execute "edit ".g:mwikiEnterLinkStack[len(g:mwikiEnterLinkStack)-1]
+        let res = split(g:mwikiEnterLinkStack[len(g:mwikiEnterLinkStack)-1], "@pos")
+        execute "edit ".res[0]
+        call setpos(".",split(res[1], ","))
         unlet g:mwikiEnterLinkStack[len(g:mwikiEnterLinkStack)-1]
     else
         echo "this is a last you enter item file."
