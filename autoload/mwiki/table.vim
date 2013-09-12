@@ -106,13 +106,20 @@ function! mwiki#table#Format()
     " add space in cell
     for i in range(0, len(table)-1, 1)
         for ii in range(0,len(table[i])-1, 1)
-            let halfWidth =  (colLen[ii]-strdisplaywidth(table[i][ii])) / 2.0
+            let fullWidth = colLen[ii]-strdisplaywidth(table[i][ii])
+            let halfWidth =  fullWidth / 2.0
             let rightWidth = float2nr(round(halfWidth))
             let leftWidth = float2nr(floor(halfWidth))
             if i == 1
                 let table[i][ii] = " ".repeat("-",colLen[ii])." "
             else
-                let table[i][ii] = repeat(" ", leftWidth+1).table[i][ii].repeat(" ", rightWidth+1)
+                if g:mwikiTableAlign == "center"
+                    let table[i][ii] = repeat(" ", leftWidth+1).table[i][ii].repeat(" ", rightWidth+1)
+                elseif g:mwikiTableAlign == "left"
+                    let table[i][ii] = repeat(" ", 2).table[i][ii].repeat(" ",fullWidth )
+                else
+                    let table[i][ii] = repeat(" ", 2).table[i][ii].repeat(" ",fullWidth )
+                endif
             endif
         endfor
         let table[i] = join(table[i],"|")

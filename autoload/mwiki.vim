@@ -11,6 +11,7 @@
 if exists("g:loaded_mwiki") || &cp
     finish
 endif
+let g:mwikiTableAlign = "left"
 
 function! mwiki#init()
     call mwiki#highlight#init()
