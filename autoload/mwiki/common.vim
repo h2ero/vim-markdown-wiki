@@ -20,6 +20,7 @@ endfunction
 "
 function! mwiki#common#GoToNext(flag)
     " is it link
+    echo mwiki#link#Is("")
     if mwiki#link#Is("") == 1
         call search('\[[^\[^\]]*\]', 'ws'.a:flag)
     elseif  mwiki#table#Is("") == 1

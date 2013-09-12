@@ -21,7 +21,7 @@ endfunction
 " check cursor string is a link
 function! mwiki#link#Is(str)
     if a:str == ""
-        let str = expand("<cWORD>")
+        let str = mwiki#function#GetCursorString("true")
     else
         let str = a:str
     endif
