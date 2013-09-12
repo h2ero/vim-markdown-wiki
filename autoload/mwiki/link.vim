@@ -34,17 +34,17 @@ endfunction
 " create link
 function! mwiki#link#Create(word)
     let linkName = a:word
-    if match(a:word,'/') != -1
-        let linkName = matchlist(a:word, '/\([^/]*\)$')[1]
-        let path = substitute(a:word,'/[^/]\+$', "", "s")
-        call mwiki#common#CreateDir(path)
-    endif
     let link = "[".linkName."](".a:word.".md)"
     return link
 endfunction
 
 " jump link locate file
 function! mwiki#link#Enter(path)
+
+    if match(a:path,'.*/.*') != -1
+        let path = matchlist(a:path, '\(.*\)/')[1]
+        call mwiki#common#CreateDir(path)
+    endif
 
     " when editing cursor  wiki is needed push now wiki into path
     if ! exists("g:mwikiEnterLinkStack")
