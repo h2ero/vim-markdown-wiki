@@ -6,7 +6,9 @@
 
 " create dir
 function! mwiki#common#CreateDir(path)
-    call mkdir(a:path, "p", 0755)
+    if ! isdirectory(a:path)
+        call mkdir(a:path, "p", 0755)
+    endif
 endfunction
 
 " repace cursor string
