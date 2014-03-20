@@ -72,33 +72,39 @@ function! mwiki#table#Format()
     let endLine = nowLine
     let firstLine = nowLine
 
+    " find first line no
     while match(getline(nowLine), '^|.*|$')  != -1
         let firstLine = nowLine
         let nowLine  = nowLine - 1
     endwhile
 
+    " find end line no
     let nowLine = endLine
     while match(getline(nowLine), '^|.*|$')  != -1
         let endLine = nowLine
         let nowLine  = nowLine + 1
     endwhile
 
+    " get table cell
     let table = []
     for lineNum in range(firstLine, endLine, 1)
         let table = add(table, split(getline(lineNum), "|"))
     endfor
 
+    " init colLen for each cell
     let colLen = []
     for i in range(0,len(table[0])-1)
         call add(colLen, 0)
     endfor
 
-    " fliter begin and end space  of cell
+    " fliter begin and end space  of cell, and get col cell max width
     for i in range(0, len(table)-1, 1)
         for ii in range(0,len(table[i])-1, 1)
             let table[i][ii] = mwiki#function#trim(table[i][ii])
+            " exclude ---- line 1
             if strdisplaywidth(table[i][ii]) > colLen[ii] && i != 1
-                let colLen[ii] = strdisplaywidth(table[i][ii])
+                " cell max width
+                let colLen[ii] = strdisplaywidth(table[i][ii])+1
             endif
         endfor
     endfor
@@ -116,9 +122,9 @@ function! mwiki#table#Format()
                 if g:mwikiTableAlign == "center"
                     let table[i][ii] = repeat(" ", leftWidth+1).table[i][ii].repeat(" ", rightWidth+1)
                 elseif g:mwikiTableAlign == "left"
-                    let table[i][ii] = repeat(" ", 2).table[i][ii].repeat(" ",fullWidth )
+                    let table[i][ii] = repeat(" ", 2).table[i][ii].repeat(" ", fullWidth)
                 else
-                    let table[i][ii] = repeat(" ", 2).table[i][ii].repeat(" ",fullWidth )
+                    let table[i][ii] = repeat(" ", 2).table[i][ii].repeat(" ", fullWidth)
                 endif
             endif
         endfor
