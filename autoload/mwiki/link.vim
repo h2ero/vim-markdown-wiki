@@ -34,7 +34,11 @@ endfunction
 " create link
 function! mwiki#link#Create(word)
     let linkName = a:word
-    let link = "[".linkName."](".a:word.".md)"
+    if mwiki#link#IsUrl(a:word)
+        let link = "[".linkName."](".a:word.")"
+    else
+        let link = "[".linkName."](".a:word.".md)"
+    endif
     return link
 endfunction
 
@@ -69,5 +73,14 @@ function! mwiki#link#GoToLast()
         unlet g:mwikiEnterLinkStack[len(g:mwikiEnterLinkStack)-1]
     else
         echo "this is a last you enter item file."
+    endif
+endfunction
+
+"the text is url
+function! mwiki#link#IsUrl(word)
+    if match(a:word,'https\?://.*') != -1
+        return 1
+    else
+        return 0
     endif
 endfunction
