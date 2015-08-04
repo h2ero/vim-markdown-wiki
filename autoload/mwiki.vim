@@ -17,6 +17,5 @@ if ! exists("g:mwikiTableAlign")
 endif
 
 function! mwiki#init()
-    set nowrap
     call mwiki#highlight#init()
 endfunction
