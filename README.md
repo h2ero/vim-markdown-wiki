@@ -26,7 +26,7 @@ record: [https://asciinema.org/a/dti9cfipk4lvdjxh8feeov860](https://asciinema.or
 3. <kbd>Tab</kbd>跳转到下一个Cell, <kbd>Shift</kbd>+<kbd>Tab</kbd>跳转到上一个Cell
 
 ### HTML生成
-* 目录和Github浏览文件一样， 见 [https://github.com/h2ero/mwiki/blob/master/doc/demowiki/index.md](https://github.com/h2ero/mwiki/blob/master/doc/demowiki/index.md)
+* 目录和Github浏览文件一样, 见 [https://github.com/h2ero/mwiki/blob/master/doc/demowiki/index.md](https://github.com/h2ero/mwiki/blob/master/doc/demowiki/index.md) , 所以没有搞HTML生成的.
 
 ### 语法高亮
 
