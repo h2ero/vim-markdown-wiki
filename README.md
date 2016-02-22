@@ -25,6 +25,9 @@ record: [https://asciinema.org/a/dti9cfipk4lvdjxh8feeov860](https://asciinema.or
 2. 编辑完成按ESC退回到Normal模式， Table会自动格式化
 3. <kbd>Tab</kbd>跳转到下一个Cell, <kbd>Shift</kbd>+<kbd>Tab</kbd>跳转到上一个Cell
 
+### HTML生成
+* 目录和Github浏览文件一样， 见 [https://github.com/h2ero/mwiki/blob/master/doc/demowiki/index.md](https://github.com/h2ero/mwiki/blob/master/doc/demowiki/index.md)
+
 ### 语法高亮
 
 1. 支持markdown格式的语法高亮.
