@@ -1,5 +1,5 @@
 # mwiki
-markdown wiki for vim 
+markdown wiki pulgin for vim 
 
 record: [https://asciinema.org/a/dti9cfipk4lvdjxh8feeov860](https://asciinema.org/a/dti9cfipk4lvdjxh8feeov860)
 
