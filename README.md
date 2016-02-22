@@ -6,7 +6,10 @@ record: [https://asciinema.org/a/dti9cfipk4lvdjxh8feeov860](https://asciinema.or
 ## 配置
 1. 依赖语法高亮插件 [https://github.com/tpope/vim-markdown](https://github.com/tpope/vim-markdown)
 2. .vimrc 
+
+``` viml
     let g:mwikis = [ {'path':'/home/h2ero/h2ero/wiki/vim/'}, {'path':'/home/h2ero/h2ero/jobwiki/'}]
+```
 
 ## Feature
 
@@ -25,6 +28,7 @@ record: [https://asciinema.org/a/dti9cfipk4lvdjxh8feeov860](https://asciinema.or
 ### 语法高亮
 
 1. 支持markdown格式的语法高亮.
+
 ``` viml
     ``` viml
     set nu
