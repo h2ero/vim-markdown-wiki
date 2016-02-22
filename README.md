@@ -32,6 +32,8 @@ record: [https://asciinema.org/a/dti9cfipk4lvdjxh8feeov860](https://asciinema.or
 
 1. 支持markdown格式的语法高亮.
 
+[highlight]: https://github.com/h2ero/mwiki/tree/master/doc/images/highlight.png "highlight"
+
 ``` viml
     ``` viml
     set nu
