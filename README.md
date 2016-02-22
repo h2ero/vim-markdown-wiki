@@ -32,10 +32,15 @@ record: [https://asciinema.org/a/dti9cfipk4lvdjxh8feeov860](https://asciinema.or
 
 1. 支持markdown格式的语法高亮.
 
-[highlight]: https://github.com/h2ero/mwiki/tree/master/doc/images/highlight.png "highlight"
+<img src="https://raw.githubusercontent.com/h2ero/mwiki/master/doc/images/highlight.png">
 
-``` viml
+```  markdown
+    # vimL
+    
+    ## Hello Word
+    
     ``` viml
-    set nu
+    " markdown highlight code block
+    echo "Hello World"
     ```
 ```
