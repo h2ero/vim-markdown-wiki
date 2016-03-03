@@ -4,7 +4,7 @@ markdown wiki pulgin for vim
 record: [https://asciinema.org/a/dti9cfipk4lvdjxh8feeov860](https://asciinema.org/a/dti9cfipk4lvdjxh8feeov860)
 
 ## 配置
-1. 依赖语法高亮插件 [https://github.com/tpope/vim-markdown](https://github.com/tpope/vim-markdown)
+1. 依赖**tpope/vim-markdown**语法高亮插件 [https://github.com/tpope/vim-markdown](https://github.com/tpope/vim-markdown)
 2. .vimrc 
 
 ``` viml
