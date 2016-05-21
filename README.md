@@ -8,6 +8,7 @@ record: [https://asciinema.org/a/dti9cfipk4lvdjxh8feeov860](https://asciinema.or
 2. .vimrc 
 
 ``` viml
+    let g:mwikiTableAlign = "left"
     let g:mwikis = [ {'path':'/home/h2ero/h2ero/wiki/vim/'}, {'path':'/home/h2ero/h2ero/jobwiki/'}]
 ```
 
