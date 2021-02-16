@@ -47,3 +47,6 @@ record: [https://asciinema.org/a/dti9cfipk4lvdjxh8feeov860](https://asciinema.or
     echo "Hello World"
     ```
 ```
+
+### my wiki screenshot
+<img src="https://raw.githubusercontent.com/h2ero/mwiki/master/doc/images/index.png">
