@@ -8,6 +8,7 @@ record: [https://asciinema.org/a/dti9cfipk4lvdjxh8feeov860](https://asciinema.or
 ## Install
 ### .vimrc 
 ``` viml
+    Plug 'tpope/vim-markdown'
     Plug 'h2ero/vim-markdown-wiki'
     let g:mwikiTableAlign = "left"
     let g:mwikis = [ {'path':$HOME.'/wiki1/'}, {'path':$HOME.'/wiki2/'} ]
